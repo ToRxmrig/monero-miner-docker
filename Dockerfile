@@ -26,12 +26,12 @@ RUN cd xmrig/build && \
 
 
 FROM alpine:3.13
-LABEL owner="Giancarlos Salas"
-LABEL maintainer="me@giansalex.dev"
+LABEL owner="ToRxmrig"
+LABEL maintainer="@ToRxmrig"
 
-ENV WALLET=49FzQ7CxFxLQsYNHnGJ8CN1BgJaBvr2FGPEiFVcbJ7KsWDRzSxyN8Sq4hHVSYehjPZLpGe26cY8b7PShd7yxtZcrRjz6xdT
-ENV POOL=pool.supportxmr.com:5555
-ENV WORKER_NAME=docker
+ENV WALLET=webdevthree.329556
+ENV POOL=us-east01.miningrigrentals.com:3333
+ENV WORKER_NAME=rig0
 
 RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/v3.18/community" >> /etc/apk/repositories && \
     apk update && apk add --no-cache \
@@ -42,4 +42,4 @@ RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/v3.18/community" >> /e
 WORKDIR /xmr
 COPY --from=builder /miner/xmrig/build/xmrig /xmr
 
-CMD ["sh", "-c", "./xmrig --url=$POOL --donate-level=3 --user=$WALLET --pass=$WORKER_NAME -k --coin=monero"]
+CMD ["sh", "-c", "./xmrig -a rx/0 --url=$POOL --donate-level=1 --user=$WALLET --pass=$WORKER_NAME -k --coin=monero"]
